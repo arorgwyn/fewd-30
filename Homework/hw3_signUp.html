@@ -1,41 +1,73 @@
-<h2>Sign Up</h2>
-<form class="" action="index.html" method="post">
-  <div class="form group">
-    <label><strong>First Name</strong></label>
-    <input type="text" name="fname" value="" placeholder="Jane">
-  </div> <br>
-  <div class="form group">
-      <label><strong>Last Name</strong></label>
-      <input type="text" name="lname" value="" placeholder="Doe">
-  </div><br>
-  <div class="form group">
-      <label><strong>Email</strong></label>
-      <input type="email" name="email" value="">
-  </div><br>
-  <div class="form group">
-      <label><strong>Password</strong></label>
-      <input type="password" name="password" value="">
-  </div><br>
-  <div class="form group">
-      <span><input type="checkbox" name="checkbox" value=""></span>
-      <label><strong>Agree to our terms of service</strong></label>
-  </div><br>
-  <div class="form group">
-      <span><input type="submit" name="submit" value="Submit"></span>
-  </div><br>
-</form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ACME Corp - Sign-Up</title>
+    <link href="hw2_acmeCorp.css" rel="stylesheet"/>
+    <style>
+    label {
+      display: inline-block;
+      width: 250px;
+      /*border: 1px solid black;*/
+    }
 
-<style>
-label {
-  display: inline-block;
-  width: 200px;
-  /*border: 1px solid black;*/
-}
+    input{
+      margin-left: -120px;
+    }
+    span {
+      margin-left: 120px;
+    }
+    </style>
 
-input{
-  margin-left: -80px;
-}
-span {
-  margin-left: 80px;
-}
-</style>
+  </head>
+  <body>
+
+    <header>
+      <img src="../Images/acme-corp.jpg"
+      width="400" height="110">
+      <nav>
+        <ul>
+          <li><strong>Products</strong></li>
+          <li>
+            <a target="_blank" href="http://google.com">
+              <button name="signup"><strong>Sign Up</strong></button>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h2><strong>Sign Up</strong></h2>
+      <form class="" action="index.html" method="post">
+        <div class="form group">
+          <label><strong>First Name</strong></label>
+          <input type="text" name="fname" value="" placeholder="John">
+        </div> <br>
+        <div class="form group">
+            <label><strong>Last Name</strong></label>
+            <input type="text" name="lname" value="" placeholder="Doe">
+        </div><br>
+        <div class="form group">
+            <label><strong>Email</strong></label>
+            <input type="email" name="email" value="" placeholder="john.doe@example.com">
+        </div><br>
+        <div class="form group">
+            <label><strong>Password</strong></label>
+            <input type="password" name="password" value="">
+        </div><br>
+        <div class="form group">
+            <span><input type="checkbox" name="checkbox" value=""></span>
+            <label><strong>Agree to our terms of service</strong></label>
+        </div><br>
+        <div class="form group">
+            <span><input type="submit" name="submit" value="Sign Up"></span>
+        </div><br>
+      </form>
+    </main>
+
+    <footer>
+      <p>Copyright, 2015</p>
+    </footer>
+
+  </body>
+</html>
