@@ -1,0 +1,15 @@
+/* Acme Sign-Up Specific CSS*/
+
+main form label {
+  display: inline-block;
+  width: 230px;
+  font-size: 15px;
+}
+
+main form input{
+  margin-left: -140px;
+  border-radius: 5px;
+}
+span {
+  margin-left: 140px;
+}
