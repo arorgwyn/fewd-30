@@ -1,0 +1,51 @@
+/* Acme Products Specific CSS*/
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+main h2{
+  margin-left:20px;
+}
+.productRow {
+  display: flex;
+  list-style: none;
+  padding: 0px 20px 16px 20px;
+  border-bottom: lightgray 1px solid;
+}
+
+span{
+  border: none;
+}
+
+.productRow .productImage {
+  width: 250px;
+}
+
+.productRow .description {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.productRow .productImage img {
+  border: lightgray solid 1px;
+  border-radius: 5px;
+  width: 100%;
+  padding: 4px;
+}
+
+.productRow .description p {
+  font-size: 15px;
+  font-style: bold;
+  text-align: justify;
+}
+
+.productRow .description button {
+  color: white;
+  background-color: red;
+  padding: 7px 15px;
+  border: black 1px solid;
+  border-radius: 5px;
+}
