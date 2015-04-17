@@ -10,6 +10,11 @@ main form input{
   margin-left: -140px;
   border-radius: 5px;
 }
+
+.submitButton{
+  border: solid darkgray 1px;
+}
+
 span {
   margin-left: 140px;
 }
