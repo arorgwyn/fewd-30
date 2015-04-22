@@ -1,0 +1,58 @@
+<!-- Wenjia Zhu
+  Homework 4
+  Javascript Practice -->
+
+<script>
+
+//Pythagorean Theorem//
+var a = prompt("What is a?");
+var b = prompt("What is b?");
+
+function longestSide(a,b){
+  a = parseFloat(a);
+  b = parseFloat(b);
+  result = Math.sqrt((a*a)+(b*b));
+  return result;
+}
+
+var c = (longestSide(a,b)).toFixed(2);
+alert("The longest side is "+ c);
+
+//Area of a Circle//
+var r = prompt("What is the radius?");
+
+function getCircumference(r){
+r=parseFloat(r);
+result = 2*Math.PI*r;
+return result;
+}
+
+var circumference = (getCircumference(r)).toFixed(2);
+alert("The circumference is "+circumference);
+
+//Converting Farenheit to Centigrade//
+var f = prompt("What is the temperature outside in F?")
+
+function FtoCentigrade(f){
+  f=parseFloat(f);
+  result=(5/9)*(f-32);
+  return result;
+}
+
+var centigrade = FtoCentigrade(f).toFixed(2);
+alert("In C, that's "+centigrade+" degrees");
+
+//Converting Inches to Centimeters//
+var nInches = prompt("How tall are you in inches?");
+
+function IntoCent(nInches){
+  nInches = parseFloat(nInches);
+  result = 2.54*nInches;
+  return result;
+}
+
+var nCentimeters = IntoCent(nInches).toFixed(2);
+alert("In centimeters, that's "+nCentimeters);
+
+
+</script>
