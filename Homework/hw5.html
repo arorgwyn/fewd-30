@@ -1,0 +1,86 @@
+<style>
+body { font-size: 20px; font-family: sans-serif; }
+
+td { width: 100px; text-align: center; }
+.placeholder, button { width: 100%; }
+.placeholder { height: 23px; border: 1px solid #bababa; border-radius: 3px; }
+button { cursor: pointer; border: 1px solid #58c0f5; color: #58c0f5; background-color: white; font: inherit; }
+button { background-color: #58c0f5; color: white; border-radius: 3px; }
+</style>
+
+<table>
+  <tr>
+    <td>
+      <div id="first-operand" class="placeholder" contenteditable></div>
+    </td>
+    <td>
+      <div id="second-operand" class="placeholder" contenteditable></div>
+    </td>
+    <td>
+      =
+    </td>
+    <td>
+      <div id="result" class="placeholder"></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <button id="add-button" class="inverted-button">+</button>
+    </td>
+    <td>
+      <button id="subtract-button" class="inverted-button">-</button>
+    </td>
+    <td>
+      <button id="multiply-button" class="inverted-button">*</button>
+    </td>
+    <td>
+      <button id="divide-button" class="inverted-button">/</button>
+    </td>
+  </tr>
+</table>
+
+<script>
+  // Your code goes here
+  var firstInput = document.getElementById("first-operand");
+  var secondInput = document.getElementById("second-operand");
+
+  function calculate (operand) {
+    var firstNum = parseFloat(firstInput.textContent);
+    var secondNum = parseFloat(secondInput.textContent);
+    if (operand == "+") { result = firstNum + secondNum; }
+    else if(operand == "-") { result = firstNum - secondNum; }
+    else if(operand == "*") { result = firstNum * secondNum; }
+    else if (operand == "/") { result = firstNum/secondNum; }
+    var output = document.querySelector("#result");
+    output.textContent = result.toFixed(2);``
+    return output;
+  }
+
+  // var add = document.querySelector("#add-button");
+  // add.addEventListener("click", function(){
+  //   calculate("+");
+  // });
+  //
+  // var subtract = document.querySelector("#subtract-button");
+  // subtract.addEventListener("click", function(){
+  //  calculate("-");
+  //});
+  //
+  // var multiply = document.querySelector("#multiply-button");
+  // multiply.addEventListener("click", function(){
+  //  calculate("*")
+  //  });
+  //
+  // var divide = document.querySelector("#divide-button");
+  // divide.addEventListener("click", function(){
+  //  calculate("/")
+  //  });
+
+  var buttons = document.querySelectorAll('.inverted-button');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function(event){
+      calculate(event.target.textContent);
+    });
+  }
+
+</script>
