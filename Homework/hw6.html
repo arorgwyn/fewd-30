@@ -1,0 +1,74 @@
+<!-- Wenjia Zhu
+05/04/2015
+Homework 7
+Movies -->
+
+<ul>
+  <!-- Movies will go here, see below. -->
+</ul>
+
+<script>
+var favoriteMovies = [
+  {
+    name: 'Cool Runnings',
+    year: 1993,
+    url: 'http://www.imdb.com/title/tt0106611/',
+    ratings: [5, 5, 5, 5, 5, 5, 5, 5]
+  },
+  {
+    name: 'Terminator 2',
+    year: 1991,
+    url: 'http://www.imdb.com/title/tt0103064/',
+    ratings: [5, 4, 3, 5, 4, 5, 4, 5, 5, 5, 3]
+  },
+  {
+    name: 'Interstellar',
+    year: 2014,
+    url: 'http://www.imdb.com/title/tt0816692/',
+    ratings: [5, 3, 5, 5, 1, 2, 4, 5, 5, 2]
+   }
+]
+
+
+// Create a <li> for each movie that looks like this and add it to the list:
+// <li>
+//   <a href="http://www.imdb.com/title/tt0106611/">Cool Runnings</a>
+//   <span>(1993, 5.0 stars, 8 ratings)</span>
+// </li>
+
+var list = document.querySelector("ul");
+var movieLink = [];
+var sublist = [];
+var span = [];
+var sum = [0,0,0];
+
+for (i=0; i<favoriteMovies.length; i++){
+  //sum the total ratings for each movie
+  for(j=0; j<favoriteMovies[i].ratings.length; j++){
+    sum[i] = sum[i]+favoriteMovies[i].ratings[j];
+  }
+  //create movie link with <a></a> and href
+  movieLink[i]=document.createElement("a");
+  movieLink[i].setAttribute("href",favoriteMovies[i].url);
+  movieLink[i].setAttribute("target","_blank");
+  movieLink[i].textContent = favoriteMovies[i].name;
+  //create each movie item (sublist)
+  sublist [i] = document.createElement("li");
+  //add movie link to each movie item bullet (sublist)
+  sublist[i].appendChild(movieLink[i]);
+  //create movie details array
+  span[i] = document.createElement("span");
+  //calculate average rating for reach movie
+  var numRating = favoriteMovies[i].ratings.length;
+  var avgRating = (sum[i]/numRating).toFixed(1);
+  span[i].textContent = " ("+favoriteMovies[i].year +", " +avgRating+" stars, " +numRating+ " ratings)";
+  //add movie details to each movie item bullet (sublist)
+  sublist[i].appendChild(span[i]);
+  //add movie items to the list (ul)
+  list.appendChild(sublist[i]);
+}
+
+
+
+
+</script>
