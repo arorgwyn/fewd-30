@@ -1,0 +1,155 @@
+/*Global*/
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: century gothic;
+}
+
+ul {
+  list-style: none;
+}
+
+/*Header*/
+header {
+  position: relative;
+  min-width: 860px;
+  background-color: lightyellow;
+  border-bottom: 5px inset lightgray;
+  box-shadow:  10px 0px 20px lightgray;
+  color: white;
+  font-size: 17px;
+}
+
+header nav {
+  position: absolute;
+  top:10px;
+  right: 10px;
+  }
+
+header img {
+  margin-top: 10px;
+  margin-left: 10px
+}
+
+header li {
+  padding: 8px 12px;
+  width: 100px;
+  text-align: center;
+  text-shadow: 2px 2px 2px black;
+  display: inline;
+}
+
+header .nav-button {
+      background-color: teal;
+      border: 1px solid darkgray;
+      border-radius: 5px;
+      box-shadow: 0px 0px 20px gray;
+      width: 100px;
+      padding: 8px 12px;
+      color:white;
+      font-size: 17px;
+    }
+
+header .nav-button a{
+  text-decoration: inherit;
+  color: inherit;
+  font-family: inherit;
+}
+
+/*Main - General*/
+main .flex {
+  display: flex;
+  padding: 0px;
+}
+
+main #country-area{
+  width: 500px;
+}
+
+main #map-area{
+  flex: 1;
+  margin-left: 15px;
+}
+
+main .sub-title{
+  border: 2px solid lightgray;
+  box-shadow: 0px 0px 10px gray;
+  padding: 0px;
+  background-color: lightblue;
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: century gothic;
+  color: darkblue;
+}
+
+main .sub-title h3 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/*Main - Country list area*/
+main #form-box{
+  border: 2px solid lightgray;
+  box-shadow: 0px 0px 10px gray;
+  filter: alpha(opacity=50);
+  opacity: 0.7;
+  background-color: lightgray;
+  height: 600px;
+  width: 500px;
+
+}
+
+main #country-area .country-form{
+    padding: 15px;
+    text-align: center;
+}
+
+main .country-button {
+  background-color: teal;
+  border: 1px solid darkgray;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px gray;
+  width: 120px;
+  padding: 6px 6px;
+  color:white;
+  font-size: 14px;
+}
+
+main #country-list-box{
+  position: relative;
+  opacity: 0.7;
+  width: 400px;
+  height: 500px;
+  border-radius: 5px;
+  margin: auto;
+  background-color: lightyellow;
+  font-weight: bold;
+}
+
+main #country-list{
+  position: absolute;
+  left: 15px;
+  top: 20px;
+  padding: 0px;
+}
+
+/*Main - Map area*/
+main #map-box{
+  position: relative;
+  background-color: darkgray;
+  height: 600px;
+}
+
+main #map{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 600px;
+}

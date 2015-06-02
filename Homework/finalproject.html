@@ -1,0 +1,189 @@
+
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>The Jet-Setter</title>
+      <link rel="stylesheet" href="main.css" media = "screen">
+      <link rel="stylesheet" href="print.css" media = "print">
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/2.2.2/octicons.css" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+      <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+      <script src="final-project.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <img src="../Images/title2.png"
+            width = "400" height = "70"/>
+            <nav>
+              <ul>
+                <li><button type="button" name="About" class = "nav-button">
+                  <a target ="_blank" href="http://arorgwyn.github.io/fewd-30/">About</a>
+                  </button>
+                </li>
+                <li><button type="button" name="Print"  id = "print-button" class = "nav-button">Print Map</button></li>
+              </ul>
+            </nav>
+        </header>
+
+        <main>
+          <ul class ="flex">
+            <li id="country-area">
+              <div class = "sub-title">
+                <h3>Countries I've Visited</h3>
+              </div>
+              <div id="form-box">
+                <form class="country-form">
+                  <!-- <input type="text" name="countryInput" id="country-input" placeholder="e.g. Australia, France" > -->
+                  <input list="country-options" id="country-input" placeholder="e.g. France, China, etc.">
+                    <datalist id="country-options">
+                    </datalist>
+                  <button type="submit" name="countryButton" id="country-entry" class="country-button">Enter country</button>
+                  <button type="button" name="clearList" id="clear-button" class="country-button">Clear Countries</button>
+                </form>
+                <div id="country-list-box">
+                  <ul id="country-list">
+                    <!--
+                    <li>country list goes here..</li
+                     -->
+                  </ul>
+              </div>
+            </div>
+            </li>
+
+            <li id="map-area">
+              <div class = "sub-title">
+                <h3>Travel Map</h3>
+              </div>
+                <div id = "map-box">
+                  <div id="map">
+                  </div>
+                </div>
+          </li>
+        </ul>
+      </main>
+
+        <footer>
+        </footer>
+    </body>
+  </html>
+
+<script>
+//overriding leaflet to keep popups open
+L.Map = L.Map.extend({
+openPopup: function(popup) {
+//        this.closePopup();  // just comment this
+this._popup = popup;
+
+return this.addLayer(popup).fire('popupopen', {
+    popup: this._popup
+    });
+}
+});
+
+// making ajax get request (ajax is a client-server interaction -- have to wait for server respond)
+function get(url, success){
+  var xhr = new XMLHttpRequest();
+  xhr.addEventListener("readystatechange", function(){
+    if (xhr.readyState == 4 && xhr.status ==200){
+      success(JSON.parse(xhr.response));
+    }
+  });
+  xhr.open("GET", url);
+  xhr.send();
+}
+
+// get country JSON data
+var countryData;
+var url = "https://gist.githubusercontent.com/robgaston/91d9f2c9ffb89ef5f484/raw/90eda4711b860e1ba9945fe92a6b078853d15710/countries.json";
+
+get(url, function(data){
+  countryData = data;
+  //country datalist
+  var dataList = form.querySelector("#country-options");
+    for (var i=0; i<countryData.length; i++){
+      var countryOption = document.createElement("option");
+      countryOption.value = countryData[i].name;
+      countryOption.textContent= countryData[i].name;
+      dataList.appendChild(countryOption);
+    }
+});
+
+// get country entry and add countries to list
+var form = document.querySelector("form");
+var countryEntry = form.querySelector('#country-input');
+var countryList = document.querySelector('#country-list');
+
+var space;
+function addCountrytoList(){
+  var newCountry = document.createElement ('li');
+  newCountry.textContent = countryEntry.value;
+  newCountry.setAttribute("id","list-item");
+  countryList.appendChild(newCountry);
+  space = document.createElement("br");
+  countryList.appendChild(space);
+}
+
+
+
+//find country on map
+var countryObj;
+var marker
+
+function findCountry(){
+    for (var j=0; j<countryData.length; j++){
+      if(countryData[j].name == countryEntry.value){
+        countryObj = countryData[j];
+        marker = L.marker([countryObj.latitude, countryObj.longitude]);
+        markersLayer.addLayer(marker);
+        marker.bindPopup(countryObj.name);
+        marker.openPopup();
+        }
+      }
+    }
+
+
+//"Enter Country" button: event handler to add country to list and map
+function enterCountryButton(){
+  event.preventDefault();
+  addCountrytoList();
+  findCountry();
+  form.reset();
+}
+
+// "Clear Countries" button: clear list and and map
+var clearButton = document.querySelector("#clear-button");
+
+function clear(){
+  countryList.innerHTML="";
+  markersLayer.clearLayers();
+}
+// Event Listeners to submit country and clear map
+form.addEventListener("submit", enterCountryButton);
+clearButton.addEventListener("click",clear);
+
+//map script
+var map = L.map('map',{
+    center: [43.325, 19.688],
+    zoom: 2
+});
+
+var markersLayer = L.layerGroup()
+  .addTo(map);
+
+var accessToken = 'pk.eyJ1IjoiYXJvcmd3eW4iLCJhIjoiZVhmUnFkSSJ9.vpOkLILbY5JhxAXlPtePAg';
+
+var mapName = 'arorgwyn.m9k9ill8';
+var mapboxTiles = L.tileLayer('https://a.tiles.mapbox.com/v4/' + mapName + '/{z}/{x}/{y}.png?access_token=' + accessToken, {
+    attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+});
+map.addLayer(mapboxTiles);
+
+
+//print map
+var printButton = document.querySelector("#print-button");
+printButton.addEventListener("click", function(){
+  window.print();
+})
+</script>
